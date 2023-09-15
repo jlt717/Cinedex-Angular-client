@@ -53,7 +53,7 @@ export class UserRegistrationService {
   }> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users' + Username, {
+      .put(apiUrl + 'users' + Username, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -64,7 +64,7 @@ export class UserRegistrationService {
   getDeleteUser(Username: any): Observable<{ Username: string }> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users' + Username, {
+      .delete(apiUrl + 'users' + Username, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
