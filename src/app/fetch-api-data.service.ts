@@ -24,10 +24,10 @@ export class FetchApiDataService {
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {}
 
-  userRegistration(userDetails: UserRegRequest): Observable<any> {
+  userRegistration(userDetails: UserRegRequest): Observable<string> {
     console.log(userDetails);
     return this.http
-            .post(`${apiUrl}/users`, userDetails)
+            .post<string>(`${apiUrl}/users`, userDetails)
             .pipe(catchError(this.handleError));
   }
 
@@ -107,14 +107,14 @@ export class FetchApiDataService {
   //API call to add to favorite movies list endpoint
   //https://github.com/jlt717/movie_api/blob/main/index.js line 139 - 161
   addToFavorites(movieID: string): Observable<string> {
-  const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
-  return this.http
-      .post<string>(`${apiUrl}/users/${username}/movies/${movieID}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    return this.http
+        .post<string>(`${apiUrl}/users/${username}/movies/${movieID}`, {
+          headers: new HttpHeaders({
+            Authorization: 'Bearer ' + token,
+          }),
+        })
       .pipe(this.extractResponseData, catchError(this.handleError));
 }
   //API call to remove movies from favorites list endpoint
