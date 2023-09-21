@@ -9,14 +9,15 @@ export interface UserRegRequest extends UserLoginRequest {
 }
 
 export interface UserLoginResponse extends UserRegRequest {
-    _id: string;
-    FavoriteMovies: Movie[];
-};
+  token: string;
+  _id: string;
+  FavoriteMovies: Movie[];
+}
 
 export interface UserEditResponse extends UserRegRequest {
   _id: string;
   FavoriteMovies: string[];
-};
+}
 
 export interface Movie {
   _id: string;
@@ -26,13 +27,13 @@ export interface Movie {
     Bio: string;
     Birthyear: number;
     Deathyear: number;
-  }
-  Featured:boolean;
+  };
+  Featured: boolean;
   Genre: {
     Name: string;
     Description: string;
   };
-  ImageURL: string;
+  ImagePath: string;
   Released: string;
   Title: string;
 }

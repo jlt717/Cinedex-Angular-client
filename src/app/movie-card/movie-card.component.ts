@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { UserLoginResponse } from '../types';
+
 
 @Component({
   selector: 'app-movie-card',
