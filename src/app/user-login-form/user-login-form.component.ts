@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserLoginRequest } from '../types';
 
 @Component({
   selector: 'app-user-login-form',
@@ -9,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '' };
+  @Input() userData: UserLoginRequest = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
