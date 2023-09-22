@@ -33,7 +33,7 @@ export interface Movie {
     Name: string;
     Description: string;
   };
-  ImagePath: string;
+  ImageURL: string;
   Released: string;
   Title: string;
 }

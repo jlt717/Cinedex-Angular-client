@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { UserLoginResponse } from '../types';
-
+import { Movie } from '../types';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 
 @Component({
   selector: 'app-movie-card',
@@ -9,9 +11,12 @@ import { UserLoginResponse } from '../types';
   styleUrls: ['./movie-card.component.scss'],
 })
 export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
+  movies: Movie[] = [];
 
-  constructor(public fetchApiData: FetchApiDataService) {}
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getMovies();
@@ -22,8 +27,36 @@ export class MovieCardComponent implements OnInit {
     console.log('Token:', token);
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
-      return this.movies;
+      // return this.movies;
+    });
+  }
+  openGenreDialog(genreName: string, genreDescription: string): void {
+    this.dialog.open(MovieDetailsComponent, {
+      width: '280px',
+      data: { title: 'Genre', name: genreName, description: genreDescription },
+    });
+  }
+  openDirectorDialog(
+    directorName: string,
+    directorBio: string,
+    directorBirthyear: number,
+    directorDeathyear: number
+  ): void {
+    this.dialog.open(MovieDetailsComponent, {
+      width: '280px',
+      data: {
+        title: 'Director',
+        name: directorName,
+        bio: directorBio,
+        birthyear: directorBirthyear,
+        deathyear: directorDeathyear,
+      },
+    });
+  }
+  openDescriptionDialog(description: string): void {
+    this.dialog.open(MovieDetailsComponent, {
+      width: '280px',
+      data: { title: 'Description', content: description },
     });
   }
 }

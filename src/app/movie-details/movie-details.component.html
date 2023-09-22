@@ -1,0 +1,21 @@
+<!-- <h1 mat-dialog-title>{{ data.Title }}</h1>
+<div mat-dialog-content>{{ data.content }}</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div> -->
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <!-- Check if data is for a Genre -->
+  <ng-container *ngIf="data.title === 'Genre'">
+    <p>Name: {{ data.name }}</p>
+    <p>Description: {{ data.description }}</p>
+  </ng-container>
+
+  <!-- Check if data is for a Director -->
+  <ng-container *ngIf="data.title === 'Director'">
+    <p>Name: {{ data.name }}</p>
+    <p>Bio: {{ data.bio }}</p>
+    <p>Birthyear: {{ data.birthyear }}</p>
+    <p>Deathyear: {{ data.deathyear }}</p>
+  </ng-container>
+</div>
