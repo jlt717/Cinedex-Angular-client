@@ -39,7 +39,7 @@
         class="favorite-button"
         *ngIf="!isFavorite(movie._id)"
         mat-icon-button
-        (click)="addFavorite(movie._id)"
+        (click)="addToFavorites(movie._id)"
         matTooltip="Add to favorites"
       >
         <mat-icon>favorite_border</mat-icon>
@@ -48,7 +48,7 @@
         class="fave-button"
         *ngIf="isFavorite(movie._id)"
         mat-icon-button
-        (click)="deleteFavorite(movie._id)"
+        (click)="deleteFromFavorites(movie._id)"
         matTooltip="Remove from favorites"
       >
         <mat-icon>favorite</mat-icon>

@@ -10,9 +10,9 @@ import { UserLoginResponse, Movie } from '../types';
   styleUrls: ['./profile-view.component.scss'],
 })
 export class ProfileViewComponent implements OnInit {
-  user: UserLoginResponse | null = null;
+  user!: UserLoginResponse;
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
-
+  favoriteMovies: Movie[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -36,6 +36,12 @@ export class ProfileViewComponent implements OnInit {
       this.snackBar.open('User has been updated!', 'OK', {
         duration: 2000,
       });
+    });
+  }
+  getFavoriteMovies(): void {
+    const username = localStorage.getItem('username');
+    this.fetchApiData.getFavoriteMovies().subscribe((movies: Movie[]) => {
+      this.favoriteMovies = movies;
     });
   }
   deleteAccount(): void {

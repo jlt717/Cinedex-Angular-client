@@ -14,7 +14,15 @@
   </div>
 </div>
 <h2>Favorite Movies</h2>
-<div class="favorite-movies"></div>
+<div class="favorite-movies">
+  <mat-card *ngFor="let movie of favoriteMovies">
+    <mat-card-header>
+      <mat-card-title>{{ movie.Title }}</mat-card-title>
+      <mat-card-subtitle>Released: {{ movie.Released }}</mat-card-subtitle>
+    </mat-card-header>
+    <img width="200" src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
+  </mat-card>
+</div>
 <h2>Edit User Details</h2>
 <div class="edit-user">
   <mat-card>

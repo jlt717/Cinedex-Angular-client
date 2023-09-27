@@ -20,6 +20,7 @@ export interface UserEditResponse extends UserRegRequest {
   FavoriteMovies: Movie[];
 }
 export interface UserFavoriteMoviesResponse {
+  Username: string;
   FavoriteMovies: Movie[];
 }
 export interface Movie {
