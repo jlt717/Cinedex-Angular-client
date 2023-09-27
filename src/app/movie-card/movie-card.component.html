@@ -1,45 +1,58 @@
-<h1 style="font-size: 36px; color: #ff0000; text-align: center">Cinedex</h1>
+<h1 style="font-size: 36px; color: #ff0000; text-align: center">CineDEX</h1>
 <div style="display: flex">
   <mat-card *ngFor="let movie of movies" style="flex: 1 1 auto">
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
-      <mat-card-subtitle
-        >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
-      >
+      <mat-card-subtitle>Released: {{ movie.Released }}</mat-card-subtitle>
     </mat-card-header>
     <img width="200" src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
     <mat-card-actions>
       <button
-        mat-raised-button
+        mat-button
         color="primary"
         (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
       >
         Genre
       </button>
       <button
-        mat-raised-button
+        mat-button
         color="primary"
-        (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birthyear, movie.Director.Deathyear)"
+        (click)="
+          openDirectorDialog(
+            movie.Director.Name,
+            movie.Director.Bio,
+            movie.Director.Birthyear,
+            movie.Director.Deathyear
+          )
+        "
       >
         Director
       </button>
       <button
-        mat-raised-button
+        mat-button
         color="primary"
         (click)="openDescriptionDialog(movie.Description)"
       >
         Description
       </button>
-      <mat-icon>favorite_border</mat-icon>
+      <button
+        class="favorite-button"
+        *ngIf="!isFavorite(movie._id)"
+        mat-icon-button
+        (click)="addFavorite(movie._id)"
+        matTooltip="Add to favorites"
+      >
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button
+        class="fave-button"
+        *ngIf="isFavorite(movie._id)"
+        mat-icon-button
+        (click)="deleteFavorite(movie._id)"
+        matTooltip="Remove from favorites"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
-
-<!-- <mat-card *ngFor="let movie of movies; let i = index">
-  <mat-dialog-content>
-    <mat-card-title>{{ movie.Title }}</mat-card-title>
-    <mat-card-subtitle
-      ><img width="200" src="{{ movie.ImageURL }}"
-    /></mat-card-subtitle>
-  </mat-dialog-content>
-</mat-card> -->

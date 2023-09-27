@@ -15,10 +15,13 @@ export interface UserLoginResponse extends UserRegRequest {
 }
 
 export interface UserEditResponse extends UserRegRequest {
+  token: string;
   _id: string;
-  FavoriteMovies: string[];
+  FavoriteMovies: Movie[];
 }
-
+export interface UserFavoriteMoviesResponse {
+  FavoriteMovies: Movie[];
+}
 export interface Movie {
   _id: string;
   Description: string;

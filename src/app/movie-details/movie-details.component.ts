@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,6 +8,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 //implements OnInit
 export class MovieDetailsComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<MovieDetailsComponent>
+  ) {}
   ngOnInit(): void {}
 }

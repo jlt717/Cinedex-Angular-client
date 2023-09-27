@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #333; /* Set your desired background color */
+  color: #fff; /* Text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.navbar a {
+  color: #fff; /* Link text color */
+  text-decoration: none;
+  margin-right: 20px; /* Adjust spacing between links */
+}
+
+.navbar h2 {
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #fff; /* Button text color */
+  cursor: pointer;
+  font-size: 16px;
+}

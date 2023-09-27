@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserLoginRequest } from '../types';
@@ -16,27 +15,27 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     private router: Router,
-    public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
   loginUser(): void {
+    console.log('Logging in with user data:', this.userData);
     this.fetchApiData.userLogin(this.userData).subscribe(
       (response) => {
-        // Logic for a successful user registration goes here! (To be implemented)
-        console.log(response);
+        console.log('Login response:', response);
         localStorage.setItem('user', response.Username);
         localStorage.setItem('token', response.token);
-        this.dialogRef.close(); // This will close the modal on success!
         this.router.navigate(['movies']);
 
         this.snackBar.open('User login successful!', 'OK', {
           duration: 2000,
         });
       },
-      (response) => {
-        this.snackBar.open(response, 'OK', {
+
+      (error) => {
+        console.error('Login error:', error);
+        this.snackBar.open('Login failed', 'OK', {
           duration: 2000,
         });
       }

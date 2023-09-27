@@ -18,4 +18,10 @@
     <p>Birthyear: {{ data.birthyear }}</p>
     <p>Deathyear: {{ data.deathyear }}</p>
   </ng-container>
+  <ng-container *ngIf="data.title === 'Description'">
+    <p>{{ data.description }}</p>
+  </ng-container>
 </div>
+<mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</mat-dialog-actions>

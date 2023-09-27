@@ -8,6 +8,7 @@ import {
   UserLoginResponse,
   Movie,
   UserEditResponse,
+  UserFavoriteMoviesResponse,
 } from './types';
 
 //Declaring the api url that will provide data for the client app
@@ -17,8 +18,6 @@ const apiUrl = 'https://cinedex.herokuapp.com';
   providedIn: 'root',
 })
 export class FetchApiDataService {
-  // Inject the HttpClient module to the constructor params
-  // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {}
 
   userRegistration(userDetails: UserRegRequest): Observable<string> {
@@ -64,6 +63,7 @@ export class FetchApiDataService {
   getDeleteUser(): Observable<string> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
+    localStorage.removeItem('token');
     return this.http
       .delete<string>(`${apiUrl}/users/${username}`, {
         headers: new HttpHeaders({
@@ -71,6 +71,34 @@ export class FetchApiDataService {
         }),
       })
       .pipe(this.extractResponseData, catchError(this.handleError));
+  }
+  getFavoriteMovies(username: string): Observable<Movie[]> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .get<UserFavoriteMoviesResponse>(`${apiUrl}/users/${username}`, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(
+        map((response: UserFavoriteMoviesResponse) => response.FavoriteMovies),
+        catchError(this.handleError)
+      );
+  }
+  isFavoriteMovie(movieID: string): boolean {
+    const userStr = localStorage.getItem('user');
+
+    // Check if userStr is null or undefined
+    if (!userStr || userStr === 'undefined') {
+      return false;
+    }
+
+    const user = JSON.parse(userStr);
+    if (user) {
+      return user.FavoriteMovies.includes(movieID);
+    }
+
+    return false;
   }
   //API call to get all movies endpoint
   getAllMovies(): Observable<Movie[]> {
@@ -95,9 +123,7 @@ export class FetchApiDataService {
       })
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
-
   //API call to add to favorite movies list endpoint
-  //https://github.com/jlt717/movie_api/blob/main/index.js line 139 - 161
   addToFavorites(movieID: string): Observable<string> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
@@ -109,8 +135,8 @@ export class FetchApiDataService {
       })
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
+
   //API call to remove movies from favorites list endpoint
-  //https://github.com/jlt717/movie_api/blob/main/index.js line 165 - 185
   deleteFromFavorites(movieID: string): Observable<string> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
