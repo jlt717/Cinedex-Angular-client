@@ -24,7 +24,6 @@ export class UserLoginFormComponent implements OnInit {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (response) => {
         console.log('Login response:', response);
-        //localStorage.setItem('user', response.Username);
         localStorage.setItem('username', response.user.Username);
         localStorage.setItem('token', response.token);
         this.router.navigate(['movies']);
@@ -36,9 +35,13 @@ export class UserLoginFormComponent implements OnInit {
 
       (error) => {
         console.error('Login error:', error);
-        this.snackBar.open('Login failed', 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'User login failed. Please check login credentials.',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       }
     );
   }

@@ -42,7 +42,24 @@ export class ProfileViewComponent implements OnInit {
       });
     });
   }
-
+  isFavorite(movieID: string): boolean {
+    return !!this.favoriteMovies.find((movie) => movie._id === movieID);
+  }
+  deleteFromFavorites(movieID: string): void {
+    this.fetchApiData.deleteFromFavorites(movieID).subscribe({
+      complete: () => {
+        this.isFavorite(movieID);
+        this.snackBar.open('Movie has been deleted from favorites', 'OK', {
+          duration: 2000,
+        });
+      },
+      error: () => {
+        this.snackBar.open('Something went wrong', 'OK', {
+          duration: 2000,
+        });
+      },
+    });
+  }
   deleteAccount(): void {
     // Send a request to your API to delete the user's account
     this.fetchApiData.getDeleteUser().subscribe({
@@ -64,7 +81,7 @@ export class ProfileViewComponent implements OnInit {
         // Clear local storage and navigate to the login screen
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/welcome']);
       },
     });
   }

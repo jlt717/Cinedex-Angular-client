@@ -12,7 +12,7 @@ export class NavbarComponent {
     console.log('Logout button clicked');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/welcome']);
   }
   navigateToProfile(): void {
     this.router.navigate(['/profile']); // Navigate to the user profile screen

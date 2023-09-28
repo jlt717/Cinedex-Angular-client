@@ -1,0 +1,12 @@
+.fave-button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.fave-button:hover {
+  background-color: darkred;
+  cursor: pointer;
+}
