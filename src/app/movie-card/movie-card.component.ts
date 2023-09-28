@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { Movie } from '../types';
+import { Movie, User } from '../types';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailsComponent } from '../movie-details/movie-details.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class MovieCardComponent implements OnInit {
   movies: Movie[] = [];
+  userFavorities: Movie[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -21,7 +22,7 @@ export class MovieCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('username');
     console.log('User from localStorage:', user);
 
     if (!user) {
@@ -30,13 +31,18 @@ export class MovieCardComponent implements OnInit {
     }
 
     this.getMovies();
+    this.getUserFavorites();
+  }
+
+  getUserFavorites(): void {
+    this.fetchApiData.getUser().subscribe((resp: User) => {
+      this.userFavorities = resp.FavoriteMovies;
+    });
   }
 
   getMovies(): void {
-    const token = localStorage.getItem('token');
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+    this.fetchApiData.getAllMovies().subscribe((resp: Movie[]) => {
       this.movies = resp;
-      return this.movies;
     });
   }
   openGenreDialog(genreName: string, genreDescription: string): void {
@@ -70,37 +76,42 @@ export class MovieCardComponent implements OnInit {
   }
 
   isFavorite(movieID: string): boolean {
-    return this.fetchApiData.isFavoriteMovie(movieID);
+    return !!this.userFavorities.find((movie) => movie._id === movieID);
   }
 
   addToFavorites(movieID: string): void {
     //const username = localStorage.getItem('user');
-    this.fetchApiData.addToFavorites(movieID).subscribe(
-      () => {
+    this.fetchApiData.addToFavorites(movieID).subscribe({
+      complete: () => {
+        this.getMovies();
+        this.getUserFavorites();
         this.snackBar.open('Movie has been added to favorites', 'OK', {
           duration: 2000,
         });
       },
-      (error) => {
+      error: (error) => {
+        console.log(error);
         this.snackBar.open('Something went wrong', 'OK', {
           duration: 2000,
         });
-      }
-    );
+      },
+    });
   }
   deleteFromFavorites(movieID: string): void {
     //const username = localStorage.getItem('user');
-    this.fetchApiData.deleteFromFavorites(movieID).subscribe(
-      () => {
+    this.fetchApiData.deleteFromFavorites(movieID).subscribe({
+      complete: () => {
+        this.getMovies();
+        this.getUserFavorites();
         this.snackBar.open('Movie has been deleted from favorites', 'OK', {
           duration: 2000,
         });
       },
-      (error) => {
+      error: () => {
         this.snackBar.open('Something went wrong', 'OK', {
           duration: 2000,
         });
-      }
-    );
+      },
+    });
   }
 }

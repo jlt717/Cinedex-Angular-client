@@ -8,9 +8,17 @@ export interface UserRegRequest extends UserLoginRequest {
   Birthday: Date;
 }
 
-export interface UserLoginResponse extends UserRegRequest {
+export interface UserLoginResponse {
   token: string;
+  user: User;
+}
+
+export interface User {
   _id: string;
+  Username: string;
+  Password: string;
+  Email: string;
+  Birthday: Date;
   FavoriteMovies: Movie[];
 }
 
