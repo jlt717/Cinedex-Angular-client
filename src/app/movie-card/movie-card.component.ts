@@ -80,7 +80,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   addToFavorites(movieID: string): void {
-    //const username = localStorage.getItem('user');
     this.fetchApiData.addToFavorites(movieID).subscribe({
       complete: () => {
         this.getMovies();
@@ -98,7 +97,6 @@ export class MovieCardComponent implements OnInit {
     });
   }
   deleteFromFavorites(movieID: string): void {
-    //const username = localStorage.getItem('user');
     this.fetchApiData.deleteFromFavorites(movieID).subscribe({
       complete: () => {
         this.getMovies();

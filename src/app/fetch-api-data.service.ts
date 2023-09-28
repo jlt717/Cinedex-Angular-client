@@ -69,7 +69,8 @@ export class FetchApiDataService {
     const username = localStorage.getItem('username');
     localStorage.removeItem('token');
     return this.http
-      .delete<string>(`${apiUrl}/users/${username}`, {
+      .delete(`${apiUrl}/users/${username}`, {
+        responseType: 'text',
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -120,16 +121,12 @@ export class FetchApiDataService {
     const username = localStorage.getItem('username');
 
     return this.http
-      .post(
-        `${apiUrl}/users/${username}/movies/${movieID}`,
-        {},
-        {
-          responseType: 'text',
-          headers: new HttpHeaders({
-            Authorization: 'Bearer ' + token,
-          }),
-        }
-      )
+      .post(`${apiUrl}/users/${username}/movies/${movieID}`, null, {
+        responseType: 'text',
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
       .pipe(this.extractResponseData, catchError(this.handleError));
   }
 
