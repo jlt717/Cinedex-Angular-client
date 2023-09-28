@@ -48,9 +48,12 @@ export class ProfileViewComponent implements OnInit {
   deleteFromFavorites(movieID: string): void {
     this.fetchApiData.deleteFromFavorites(movieID).subscribe({
       complete: () => {
-        this.isFavorite(movieID);
-        this.snackBar.open('Movie has been deleted from favorites', 'OK', {
-          duration: 2000,
+        this.fetchApiData.getUser().subscribe((user: User) => {
+          this.user = user;
+          this.favoriteMovies = user.FavoriteMovies;
+          this.snackBar.open('Movie has been deleted from favorites', 'OK', {
+            duration: 2000,
+          });
         });
       },
       error: () => {
@@ -61,7 +64,6 @@ export class ProfileViewComponent implements OnInit {
     });
   }
   deleteAccount(): void {
-    // Send a request to your API to delete the user's account
     this.fetchApiData.getDeleteUser().subscribe({
       error: (error) => {
         console.error('Account deletion error:', error);
