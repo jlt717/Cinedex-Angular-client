@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { User, Movie, UserLoginResponse } from '../types';
+import { User, Movie, UserRegRequest } from '../types';
 
 @Component({
   selector: 'app-profile-view',
@@ -34,11 +34,17 @@ export class ProfileViewComponent implements OnInit {
       this.favoriteMovies = user.FavoriteMovies;
     });
   }
-  editUser(): void {
+  editUser(updatedUser: any): void {
     this.fetchApiData.editUser(this.userData).subscribe((response) => {
-      this.user = response;
-      this.snackBar.open('User has been updated!', 'OK', {
-        duration: 2000,
+      console.log('Server response:', response);
+      //localStorage.setItem('user', updatedUser);
+      this.fetchApiData.getUser().subscribe((user: User) => {
+        console.log('Updated user data:', user);
+        this.user = user;
+        //this.userData = { Username: '', Password: '', Email: '', Birthday: '' };
+        this.snackBar.open('User has been updated!', 'OK', {
+          duration: 2000,
+        });
       });
     });
   }
