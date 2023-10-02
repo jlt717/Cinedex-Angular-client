@@ -1,0 +1,49 @@
+div {
+  padding-left: 20px;
+  background-color: #e50914 !important;
+}
+mat-card {
+  max-width: 300px;
+  background-color: #333333; /* Black background for movie cards */
+  color: #e50914; /* White text for movie card content */
+  border-radius: 10px; /* Rounded corners for movie cards */
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+mat-card-title {
+  color: #e50914;
+  font-size: 28px;
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+mat-card-subtitle {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 300;
+  padding-bottom: 20px; /* White text for movie card title and subtitle */
+}
+
+img {
+  display: block;
+  margin: 0 auto; /* Center the image horizontally */
+  max-width: 65%; /* Ensure the image doesn't exceed the card width */
+  border: 2px solid #ffffff; /* White border for the image */
+  border-radius: 8px; /* Rounded corners for the image */
+  margin-bottom: 15px;
+}
+
+.mat-card-actions button {
+  background-color: #e50914; /* White background for buttons */
+  color: #ffffff; /* Black text for buttons */
+  margin: 4px; /* Add space between buttons */
+  border-radius: 5px; /* Rounded corners for buttons */
+}
+.mat-raised-button {
+  background-color: #a9a9a9;
+  color: #333333;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 5px 10px;
+}

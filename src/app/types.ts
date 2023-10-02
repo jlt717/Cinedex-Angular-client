@@ -18,7 +18,7 @@ export interface User {
   Username: string;
   Password: string;
   Email: string;
-  Birthday: Date;
+  Birthday: string;
   FavoriteMovies: Movie[];
 }
 

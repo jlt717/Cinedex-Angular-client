@@ -6,10 +6,10 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 
 const routes: Routes = [
-  { path: 'home', component: WelcomePageComponent },
-  { path: 'profile', component: ProfileViewComponent },
-  { path: 'movies', component: MovieCardComponent },
-  { path: 'login', component: UserLoginFormComponent },
+  //{ path: 'home', component: WelcomePageComponent },
+  // { path: 'profile', component: ProfileViewComponent },
+  // { path: 'movies', component: MovieCardComponent },
+  //{ path: 'login', component: UserLoginFormComponent },
 ];
 
 @NgModule({

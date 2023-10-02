@@ -52,16 +52,16 @@ export class FetchApiDataService {
   }
 
   //API call to edit specific user endpoint
-  editUser(updatedUser: any): Observable<UserEditResponse> {
+  editUser(updatedUser: any): Observable<User> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
-      .put<UserEditResponse>(`${apiUrl}/users/${username}`, updatedUser, {
+      .put<User>(`${apiUrl}/users/${username}`, updatedUser, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(this.extractResponseData, catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
   //  //API call to delete specific user endpoint
   getDeleteUser(): Observable<string> {

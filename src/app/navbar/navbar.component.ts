@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private router: Router) {}
-  logout(): void {
-    console.log('Logout button clicked');
+  logoutUser(): void {
+    //console.log('Logout button clicked');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigate(['/welcome']);
