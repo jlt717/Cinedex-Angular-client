@@ -11,13 +11,13 @@
     <img src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
     <mat-card-actions>
       <button
-        class="mat-raised-button"
+        class="mat-button"
         (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
       >
         Genre
       </button>
       <button
-        class="mat-raised-button"
+        class="mat-button"
         (click)="
           openDirectorDialog(
             movie.Director.Name,
@@ -30,7 +30,7 @@
         Director
       </button>
       <button
-        class="mat-raised-button"
+        class="mat-button"
         (click)="openDescriptionDialog(movie.Description)"
       >
         Description
@@ -55,5 +55,4 @@
       </button>
     </mat-card-actions>
   </mat-card>
-  <!-- <div fxFlex="calc(33.33% - 16px)"></div> -->
 </div>

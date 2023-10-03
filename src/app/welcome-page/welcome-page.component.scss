@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.main-page {
+  text-align: center;
+}
+
+.welcome-button {
+  background-color: #333333 !important;
+  color: white !important;
+  margin-top: 150px;
+  font-size: 18px;
+  padding: 20px 30px;
+}
+.welcome-button:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  cursor: pointer;
+}

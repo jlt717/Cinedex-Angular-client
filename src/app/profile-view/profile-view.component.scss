@@ -1,12 +1,95 @@
+.profile-view {
+  background-color: #e50914;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: auto;
+  flex-wrap: wrap;
+}
+mat-card {
+  background-color: #333333;
+  padding-right: 90px;
+  padding-left: 90px;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+mat-card-title {
+  font-size: 18px;
+  text-align: center;
+}
+mat-card-subtitle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 14px;
+  color: lightgrey;
+}
+.profile {
+  flex: 1;
+  margin-left: 30px;
+}
+
+.favorite-movies {
+  text-align: center;
+  flex: 1;
+  color: #ffffff;
+  margin-top: 125px;
+  border-radius: 20px;
+}
+.edit-user {
+  flex: 1;
+  justify-content: space-between;
+  margin-top: 125px;
+  margin-right: 100px;
+}
+.heading {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.user-info,
+.faves-heading,
+.edit-heading {
+  text-align: center;
+  align-items: center;
+  color: #000000;
+  font-size: 32px;
+  margin-top: 30px;
+  white-space: nowrap;
+  //padding-left: 200px;
+}
+
 .fave-button {
   background-color: red;
   color: white;
   padding: 5px 10px;
+  margin: auto;
   border: none;
   border-radius: 5px;
 }
 
 .fave-button:hover {
-  background-color: darkred;
+  background-color: #ffffff;
+  color: #000000;
   cursor: pointer;
+}
+.delete-user {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.delete-user:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.update-user {
+  background-color: #e50914 !important;
+  color: white !important;
+}
+
+.update-user:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }

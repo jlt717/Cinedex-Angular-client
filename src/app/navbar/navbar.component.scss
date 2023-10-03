@@ -1,16 +1,18 @@
 .navbar {
-  background-color: #333; /* Set your desired background color */
-  color: #fff; /* Text color */
+  background-color: #333;
+  font-size: 24px;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 20px 40px;
+  border-bottom: 2px solid white;
 }
 
 .navbar a {
-  color: #fff; /* Link text color */
+  color: #fff;
   text-decoration: none;
-  margin-right: 20px; /* Adjust spacing between links */
+  margin-right: 20px;
 }
 
 .navbar h2 {
@@ -20,12 +22,13 @@
 .nav-links {
   display: flex;
   align-items: center;
+  font-size: 18px;
 }
 
 .logout-button {
   background: none;
   border: none;
-  color: #fff; /* Button text color */
+  color: #fff;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
 }

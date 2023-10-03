@@ -1,0 +1,16 @@
+mat-card {
+    background-color: #333333;
+  }
+  mat-card-title {
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  .login-button {
+    background-color: #e50914 !important;
+    color: #ffffff !important;
+  }
+  .login-button:hover {
+    background-color: lightgray !important;
+    color: #e50914 !important;
+    cursor: pointer;
+  }
