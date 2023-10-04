@@ -1,56 +1,33 @@
 <div fxLayout="row wrap" fxLayountAlign="start start" fxLayoutGap="16px">
-  <mat-card
-    *ngFor="let movie of movies"
-    fxFlex="calc(33.33% - 16px)"
-    style="max-width: 300px"
-  >
-    <mat-card-header>
+  <mat-card *ngFor="let movie of movies" fxFlex="calc(33.33% - 16px)" style="max-width: 300px">
+    <mat-card-header style="justify-content: center;">
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle>Released: {{ movie.Released }}</mat-card-subtitle>
     </mat-card-header>
     <img src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
-    <mat-card-actions>
-      <button
-        class="mat-button"
-        (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
-      >
+    <mat-card-actions style="justify-content: center;">
+      <button class="mat-button" (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)">
         Genre
       </button>
-      <button
-        class="mat-button"
-        (click)="
+      <button class="mat-button" (click)="
           openDirectorDialog(
             movie.Director.Name,
             movie.Director.Bio,
             movie.Director.Birthyear,
             movie.Director.Deathyear
           )
-        "
-      >
+        ">
         Director
       </button>
-      <button
-        class="mat-button"
-        (click)="openDescriptionDialog(movie.Description)"
-      >
+      <button class="mat-button" (click)="openDescriptionDialog(movie.Description)">
         Description
       </button>
-      <button
-        class="favorite-button"
-        *ngIf="!isFavorite(movie._id)"
-        mat-icon-button
-        (click)="addToFavorites(movie._id)"
-        matTooltip="Add to favorites"
-      >
+      <button class="favorite-button" *ngIf="!isFavorite(movie._id)" mat-icon-button (click)="addToFavorites(movie._id)"
+        matTooltip="Add to favorites">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button
-        class="fave-button"
-        *ngIf="isFavorite(movie._id)"
-        mat-icon-button
-        (click)="deleteFromFavorites(movie._id)"
-        matTooltip="Remove from favorites"
-      >
+      <button class="fave-button" *ngIf="isFavorite(movie._id)" mat-icon-button (click)="deleteFromFavorites(movie._id)"
+        matTooltip="Remove from favorites">
         <mat-icon>favorite</mat-icon>
       </button>
     </mat-card-actions>
