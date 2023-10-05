@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private router: Router) {}
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
   logoutUser(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

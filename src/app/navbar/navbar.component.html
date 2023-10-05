@@ -3,7 +3,9 @@
     <h2>CineDEX</h2>
   </a>
   <div class="nav-links">
-    <a routerLink="/profile">Profile</a>
-    <button class="logout-button" (click)="logoutUser()">Logout</button>
+    <ng-container *ngIf="isLoggedIn()">
+      <a routerLink="/profile">Profile</a>
+      <button class="logout-button" (click)="logoutUser()">Logout</button>
+    </ng-container>
   </div>
 </div>
