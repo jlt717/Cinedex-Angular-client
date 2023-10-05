@@ -48,10 +48,11 @@ export class ProfileViewComponent implements OnInit {
     const birthdayEpoch = Date.parse(this.userData.Birthday);
     const editedUser = {
       Username: this.userData.Username || this.user.Username,
-      Password: this.userData.Password || this.user.Password,
+      Password: this.userData.Password,
       Email: this.userData.Email || this.user.Email,
       Birthday: birthdayEpoch || this.user.Birthday,
     };
+
     this.fetchApiData.editUser(editedUser).subscribe((response) => {
       //console.log(response);
       //localStorage.setItem('user', updatedUser);
