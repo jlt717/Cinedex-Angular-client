@@ -53,7 +53,7 @@ export class ProfileViewComponent implements OnInit {
       Birthday: birthdayEpoch || this.user.Birthday,
     };
     this.fetchApiData.editUser(editedUser).subscribe((response) => {
-      //console.log(response);
+      this.user = response;
       //localStorage.setItem('user', updatedUser);
       this.getUser();
       //.subscribe((user: User) => {

@@ -11,7 +11,6 @@ import {
   UserRegRequest,
   UserLoginResponse,
   Movie,
-  UserEditResponse,
   UserFavoriteMoviesResponse,
   User,
 } from './types';
