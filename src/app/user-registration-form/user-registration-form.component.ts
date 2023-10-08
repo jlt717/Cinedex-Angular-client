@@ -1,4 +1,3 @@
-// src/app/user-registration-form/user-registration-form.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -17,16 +16,27 @@ export class UserRegistrationFormComponent implements OnInit {
     Email: '',
     Birthday: new Date(),
   };
+  /**
+   * Constructs the UserRegistrationFormComponent.
+   * @param {FetchApiDataService} fetchApiData - Service for fetching data from the API.
+   * @param {MatDialogRef<UserRegistrationFormComponent>} dialogRef - Reference to the MatDialog for the registration form.
+   * @param {MatSnackBar} snackBar - Angular Material service for displaying snackbar notifications.
+   */
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar
   ) {}
+  /**
+   * Lifecycle hook called after component initialization.
+   */
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * Sends user registration details to the backend.
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (response) => {

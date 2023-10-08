@@ -12,6 +12,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UserLoginFormComponent implements OnInit {
   @Input() userData: UserLoginRequest = { Username: '', Password: '' };
+  /**
+   * Constructs the UserLoginFormComponent.
+   * @param {FetchApiDataService} fetchApiData - Service for fetching data from the API.
+   * @param {Router} router - Angular router service for navigation.
+   * @param {MatSnackBar} snackBar - Angular Material service for displaying snackbar notifications.
+   * @param {MatDialogRef<UserLoginFormComponent>} dialogRef - Reference to the MatDialog for the login form.
+   */
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -19,8 +26,14 @@ export class UserLoginFormComponent implements OnInit {
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserLoginFormComponent>
   ) {}
+  /**
+   * Lifecycle hook called after component initialization.
+   */
 
   ngOnInit(): void {}
+  /**
+   * Logs in the user using the provided credentials and navigates to the movies screen after successful login.
+   */
   loginUser(): void {
     console.log('Logging in with user data:', this.userData);
     this.fetchApiData.userLogin(this.userData).subscribe(

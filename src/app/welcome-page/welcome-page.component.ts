@@ -10,19 +10,35 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
+  /**
+   * Constructs the WelcomePageComponent.
+   * @param {MatDialog} dialog - Angular Material service for opening dialogs.
+   */
   constructor(public dialog: MatDialog) {}
+  /**
+   * Lifecycle hook called after component initialization.
+   */
+
   ngOnInit(): void {}
-  // This is the function that will open the dialog when the signup button is clicked
+  /**
+   * Opens the user registration dialog when the signup button is clicked.
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px',
     });
   }
+  /**
+   * Opens the user login dialog when the login button is clicked.
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px',
     });
   }
+  /**
+   * Opens the movies dialog
+   */
   openMoviesDialog(): void {
     this.dialog.open(MovieCardComponent, {
       width: '500px',

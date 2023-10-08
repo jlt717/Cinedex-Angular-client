@@ -29,6 +29,9 @@ export class ProfileViewComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   }
+  /**
+   * Fetches user data from the API
+   */
   getUser(): void {
     this.fetchApiData.getUser().subscribe((user: User) => {
       this.user = {
@@ -44,6 +47,9 @@ export class ProfileViewComponent implements OnInit {
       this.favoriteMovies = user.FavoriteMovies;
     });
   }
+  /**
+   * Updates user profile based on the provided input.
+   */
   editUser(): void {
     const birthdayEpoch = Date.parse(this.userData.Birthday);
     const editedUser = {
@@ -55,21 +61,27 @@ export class ProfileViewComponent implements OnInit {
 
     this.fetchApiData.editUser(editedUser).subscribe((response) => {
       this.user = response;
-      //localStorage.setItem('user', updatedUser);
       this.getUser();
-      //.subscribe((user: User) => {
-      // console.log('Updated user data:', updatedUser);
-      //this.user = user;
-      //this.userData = { Username: '', Password: '', Email: '', Birthday: '' };
       this.snackBar.open('User has been updated!', 'OK', {
         duration: 2000,
       });
     });
   }
+  /**
+   * Checks if a movie with the given ID is in the user's favorites.
+   * @param {string} movieID - The ID of the movie to check.
+   * @returns {boolean} True if the movie is a favorite, false otherwise.
+   */
 
   isFavorite(movieID: string): boolean {
     return !!this.favoriteMovies.find((movie) => movie._id === movieID);
   }
+  /**
+   * Deletes a movie from the user's favorites list.
+   * Displays a snackbar notification upon successful deletion.
+   * @param {string} movieID - The ID of the movie to delete from favorites.
+   */
+
   deleteFromFavorites(movieID: string): void {
     this.fetchApiData.deleteFromFavorites(movieID).subscribe({
       complete: () => {
@@ -88,6 +100,10 @@ export class ProfileViewComponent implements OnInit {
       },
     });
   }
+  /**
+   * Deletes user's account.
+   * Navigates to welcome screen after account deletion.
+   */
   deleteAccount(): void {
     this.fetchApiData.getDeleteUser().subscribe({
       error: (error) => {
@@ -104,12 +120,8 @@ export class ProfileViewComponent implements OnInit {
         this.snackBar.open('Account deleted successfully.', 'OK', {
           duration: 2000,
         });
-
         // Clear local storage and navigate to the login screen
         localStorage.clear();
-
-        //localStorage.removeItem('token');
-        //localStorage.removeItem('user');
         this.router.navigate(['/welcome']);
       },
     });
